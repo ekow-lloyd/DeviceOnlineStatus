@@ -13,7 +13,7 @@ while True:
         test= smtpObj.ehlo()      # establish a test connection, response 250 means succesful connection.
         encrypt = smtpObj.starttls()
         signIn = smtpObj.login('myemail@gmail.com','Pa55wordWith5')
-        sendMsg = smtpObj.sendmail("myemail@gmail", "recipientemail@gmail.com", "Subject: Status : Online \nYo stewart, Your device is still online.\nKind Regards")
+        sendMsg = smtpObj.sendmail("myemail@gmail", "recipientemail@gmail.com", "Subject: Status : Online \nHi there, Your device is online and running.\nKind Regards")
         {}
         signOut = smtpObj.quit()
 
@@ -28,7 +28,7 @@ while True:
         test = smtpObj.ehlo()
         encrypt = smtpObj.starttls()
         signIn = smtpObj.login('myemail@gmail.com','Pa55wordwith"5"') # credentials to log in to email-account
-        sendMsg = smtpObj.sendmail("myemail@gmail", "recipientemail@gmail.com", "Subject: Alert!! \nYo stewart, Device is Offline.\nKind Regards")
+        sendMsg = smtpObj.sendmail("myemail@gmail", "recipientemail@gmail.com", "Subject: Alert!! \nHi there, Device is Offline.\nKind Regards")
         {}
         signOut = smtpObj.quit()
 
