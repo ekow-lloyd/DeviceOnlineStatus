@@ -10,8 +10,8 @@ def sendMail():
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
     smtpObj.ehlo()
     smtpObj.starttls()
-    smtpObj.login("pythonblac@gmail.com","Dede@feni1520")
-    smtpObj.sendmail("pythonblack@gmail.com", "lloyd.stewart@alpro.com", "Subject:Device State \nHi Lloyd,\nthe following device(s) are Online at time of mail: {}.\nCheers,\nPythonBlac".format(Online))
+    smtpObj.login("myemail@gmail.com","mypassword")
+    smtpObj.sendmail("myemail@gmail.com", "recipientemailt@gmail.com", "Subject:Device State \nHi Lloyd,\nthe following device(s) are Online at time of mail: {}.\nCheers,\nPython".format(Online))
     smtpObj.quit()
 
 sendMail()
@@ -21,8 +21,8 @@ def mailFail():
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
     smtpObj.ehlo()
     smtpObj.starttls()
-    smtpObj.login("pythonblac@gmail.com","Dede@feni1520")
-    smtpObj.sendmail("pythonblac@gmail.com","lloyd.stewart@alpro.com","Subject:Alert \nHi there,\nthe following device(s)are offline : {}".format(Offline))
+    smtpObj.login("myemail@gmail.com","mypassword")
+    smtpObj.sendmail("myemail@gmail.com","myemail@gmail.com","Subject:Alert \nHi there,\nthe following device(s)are offline : {}".format(Offline))
     smtpObj.quit()
 mailFail()
 
