@@ -22,7 +22,7 @@ def mailFail():
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login("myemail@gmail.com","mypassword")
-    smtpObj.sendmail("myemail@gmail.com","recipientemail@gmail.com","Subject:Offline \nHi Ekow,\nThe following {} device(s)are currently offline : {}\n\ncheers,\nPythonBlac".format(numOffline,Offline))
+    smtpObj.sendmail("myemail@gmail.com","recipientemail@gmail.com","Subject:Offline \nHi Ekow,\nThe following {} device(s) are currently offline : {}\n\ncheers,\nPythonBlac".format(numOffline,Offline))
     smtpObj.quit()
 
 # a pre-defined list containing the IP addresses of the devices i want to check
