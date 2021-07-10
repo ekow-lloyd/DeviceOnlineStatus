@@ -1,31 +1,33 @@
-# a program that monitors the status of my home camera and sends an email when device is offline
-
 import smtplib
-import subprocess 
+import subprocess
 
+# a list to store which devicess are online or offline
 Online = []
 Offline = []
+
+# a function to send mail for online device
+# take the log in of email and password to set-up an SMTP connection
 
 def sendMail():
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login("myemail@gmail.com","mypassword")
-    smtpObj.sendmail("myemail@gmail.com", "recipientemailt@gmail.com", "Subject:Device State \nHi Lloyd,\nthe following device(s) are Online at time of mail: {}.\nCheers,\nPython".format(Online))
+    smtpObj.sendmail("myemail@gmail.com", "recipientemail@gmail.com", "Subject:Online \nHi Lloyd,\nThe following {} device(s) are currently online : {}.\n\nCheers,\nPythonBlac".format(numOnline,Online))
     smtpObj.quit()
 
-sendMail()
-
-
+# a function to send mail of offline devices (to avoid complexity i made two function, but one mail could inform of the offline statuses are well)
 def mailFail():
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
     smtpObj.ehlo()
     smtpObj.starttls()
     smtpObj.login("myemail@gmail.com","mypassword")
-    smtpObj.sendmail("myemail@gmail.com","myemail@gmail.com","Subject:Alert \nHi there,\nthe following device(s)are offline : {}".format(Offline))
+    smtpObj.sendmail("myemail@gmail.com","recipientemail@gmail.com","Subject:Offline \nHi Ekow,\nThe following {} device(s)are currently offline : {}\n\ncheers,\nPythonBlac".format(numOffline,Offline))
     smtpObj.quit()
-mailFail()
 
+# a pre-defined list containing the IP addresses of the devices i want to check
+# open the text file in read mode and extract the IP addresses, stripping the 'white space' at the end of the file object
+# the output of the ping command gets stored in the variable 'Outcome', an Outcome of 0 means successful, so Online list gets appended and same for Offline list if outcome is not 0
 
 with open('pinglist.txt', 'r') as readfile:
     for IP in readfile:
@@ -38,19 +40,19 @@ with open('pinglist.txt', 'r') as readfile:
         if outcome == 0:
             Online.append(IP.rstrip())
             print("Status: Online")
-            print('Sending confirmation mail....')
-            sendMail()
+            print('Updating List for confirmation mail....')
+            
         else:
             if outcome != 0:
                 Offline.append(IP.rstrip())
                 print("Status: Down")
-                print('Sending Notification mail')
-                mailFail()
+                print('Updating list for Notification mail')
 
+numOnline = len(Online)     
+numOffline = len(Offline)           
+sendMail()
+mailFail()
+
+print('')
 print('Exiting Status Check')
 print('')
-
-
-
-
-
