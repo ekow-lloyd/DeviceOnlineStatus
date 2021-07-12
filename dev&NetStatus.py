@@ -6,7 +6,7 @@ Online = []
 Offline = []
 
 # a function to send mail for online device
-# take the log in of email and password to set-up an SMTP connection
+# take the log-in of email and password to set-up an SMTP connection
 
 def sendMail():
     smtpObj = smtplib.SMTP('smtp.gmail.com', 587)
@@ -51,7 +51,11 @@ with open('pinglist.txt', 'r') as readfile:
 numOnline = len(Online)     
 numOffline = len(Offline)           
 sendMail()
-mailFail()
+
+if numOffline == 0:
+    exit
+else:
+    mailFail()
 
 print('')
 print('Exiting Status Check')
